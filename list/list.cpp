@@ -5,7 +5,7 @@ void List<T>::Add(T val) {
     /* void List::Add(std::string val) { */
     auto node = new Node<T>;
     node->value_ = val;
-    node->next_ = NULL;
+    node->next_ = nullptr;
 
     int size = this->Size();
     if (size == 0) {
@@ -26,7 +26,7 @@ void List<T>::Add(int index, T val) {
 
     auto node = new Node<T>;
     node->value_ = val;
-    node->next_ = NULL;
+    node->next_ = nullptr;
 
     int size = this->Size();
     if (size <= index) {
@@ -53,7 +53,7 @@ void List<T>::Add(int index, T val) {
 template <typename T>
 bool List<T>::Contains(T val) {
     /* bool List::Contains(std::string val) { */
-    if (this->first_ == NULL) {
+    if (this->first_ == nullptr) {
         return false;
     }
 
@@ -77,9 +77,9 @@ T List<T>::Get(int index) {
 
 template <typename T>
 bool List<T>::IsEmpty() {
-    return this->first_ == NULL;
+    return this->first_ == nullptr;
 }
-/* bool List::IsEmpty() { return this->first_ == NULL; } */
+/* bool List::IsEmpty() { return this->first_ == nullptr; } */
 
 template <typename T>
 void List<T>::Remove(int index) {
@@ -93,7 +93,7 @@ void List<T>::Remove(int index) {
     }
 
     if (index == 0 && size == 1) {
-        this->first_ = NULL;
+        this->first_ = nullptr;
         return;
     }
 
@@ -111,7 +111,7 @@ void List<T>::Remove(int index) {
 
 template <typename T>
 int List<T>::Size() {
-    if (this->first_ == NULL) {
+    if (this->first_ == nullptr) {
         return 0;
     }
 
@@ -119,7 +119,7 @@ int List<T>::Size() {
     int size = 1;
     for (;;) {
         now = now->next_;
-        if (now == NULL) {
+        if (now == nullptr) {
             break;
         }
         size++;
