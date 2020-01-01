@@ -1,18 +1,19 @@
 #include "node.hpp"
 
+template <class T>
 class List {
 public:
-    Node* first_;
+    Node<T>* first_;
 
-    void Add(std::string val);
-    void Add(int index, std::string val);
-    bool Contains(std::string val);
-    std::string Get(int index);
+    void Add(T val);
+    void Add(int index, T val);
+    bool Contains(T val);
+    T Get(int index);
     bool IsEmpty();
     void Remove(int index);
-    void Set(int index, std::string val);
+    void Set(int index, T val);
     int Size();
 
 private:
-    Node* GetNode(int index);
+    Node<T>* GetNode(int index);
 };

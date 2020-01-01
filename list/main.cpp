@@ -3,7 +3,7 @@
 #include "list.cpp"
 
 bool testAdd1() {
-    List* list = new List;
+    auto list = new List<std::string>;
     if (!list->IsEmpty()) {
         return false;
     }
@@ -25,7 +25,7 @@ bool testAdd1() {
 }
 
 bool testAdd2() {
-    List* list = new List;
+    auto list = new List<std::string>;
     if (!list->IsEmpty()) {
         return false;
     }
@@ -84,7 +84,7 @@ bool testAdd2() {
 }
 
 bool testContains() {
-    List* list = new List;
+    auto list = new List<std::string>;
     list->Add("a");
     list->Add("b");
 
@@ -104,7 +104,7 @@ bool testContains() {
 }
 
 bool testIsEmpty() {
-    List* list = new List;
+    auto list = new List<std::string>;
     if (!list->IsEmpty()) {
         return false;
     }
@@ -118,7 +118,7 @@ bool testIsEmpty() {
 }
 
 bool testRemove() {
-    List* list = new List;
+    auto list = new List<std::string>;
     list->Add("a");
     list->Add("b");
     list->Add("c");
@@ -163,7 +163,7 @@ bool testRemove() {
 }
 
 bool testSet() {
-    List* list = new List;
+    auto list = new List<std::string>;
     list->Add("a");
     list->Add("b");
     list->Add("c");
@@ -217,7 +217,7 @@ bool testSet() {
 }
 
 bool testSize() {
-    List* list = new List;
+    auto list = new List<std::string>;
     list->Add("a");
     list->Add("b");
     list->Add("c");

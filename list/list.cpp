@@ -1,7 +1,9 @@
 #include "list.hpp"
 
-void List::Add(std::string val) {
-    Node* node = new Node;
+template <typename T>
+void List<T>::Add(T val) {
+    /* void List::Add(std::string val) { */
+    auto node = new Node<T>;
     node->value_ = val;
     node->next_ = NULL;
 
@@ -11,16 +13,18 @@ void List::Add(std::string val) {
         return;
     }
 
-    Node* last = this->GetNode(size - 1);
+    Node<T>* last = this->GetNode(size - 1);
     last->next_ = node;
 }
 
-void List::Add(int index, std::string val) {
+template <typename T>
+void List<T>::Add(int index, T val) {
+    /* void List::Add(int index, std::string val) { */
     if (index < 0) {
         return;
     }
 
-    Node* node = new Node;
+    auto node = new Node<T>;
     node->value_ = val;
     node->next_ = NULL;
 
@@ -31,7 +35,7 @@ void List::Add(int index, std::string val) {
         return;
     }
 
-    Node* after = this->GetNode(index);
+    Node<T>* after = this->GetNode(index);
     node->next_ = after;
 
     if (index == 0) {
@@ -39,20 +43,22 @@ void List::Add(int index, std::string val) {
     }
 
     if (index > 0) {
-        Node* before = this->GetNode(index - 1);
+        Node<T>* before = this->GetNode(index - 1);
         before->next_ = node;
     }
 
     return;
 }
 
-bool List::Contains(std::string val) {
+template <typename T>
+bool List<T>::Contains(T val) {
+    /* bool List::Contains(std::string val) { */
     if (this->first_ == NULL) {
         return false;
     }
 
     int size = this->Size();
-    Node* now = this->first_;
+    Node<T>* now = this->first_;
     for (int i = 0; i < size; i++) {
         if (now->value_ == val) {
             return true;
@@ -62,14 +68,21 @@ bool List::Contains(std::string val) {
     return false;
 }
 
-std::string List::Get(int index) {
-    Node* node = this->GetNode(index);
+template <typename T>
+T List<T>::Get(int index) {
+    /* std::string List::Get(int index) { */
+    Node<T>* node = this->GetNode(index);
     return node->value_;
 }
 
-bool List::IsEmpty() { return this->first_ == NULL; }
+template <typename T>
+bool List<T>::IsEmpty() {
+    return this->first_ == NULL;
+}
+/* bool List::IsEmpty() { return this->first_ == NULL; } */
 
-void List::Remove(int index) {
+template <typename T>
+void List<T>::Remove(int index) {
     if (index < 0) {
         return;
     }
@@ -84,24 +97,25 @@ void List::Remove(int index) {
         return;
     }
 
-    Node* next = this->GetNode(index + 1);
+    Node<T>* next = this->GetNode(index + 1);
 
     if (index == 0) {
         this->first_ = next;
     }
 
     if (index > 0) {
-        Node* previous = this->GetNode(index - 1);
+        Node<T>* previous = this->GetNode(index - 1);
         previous->next_ = next;
     }
 }
 
-int List::Size() {
+template <typename T>
+int List<T>::Size() {
     if (this->first_ == NULL) {
         return 0;
     }
 
-    Node* now = this->first_;
+    Node<T>* now = this->first_;
     int size = 1;
     for (;;) {
         now = now->next_;
@@ -113,7 +127,8 @@ int List::Size() {
     return size;
 }
 
-void List::Set(int index, std::string val) {
+template <typename T>
+void List<T>::Set(int index, T val) {
     if (index < 0) {
         return;
     }
@@ -123,16 +138,17 @@ void List::Set(int index, std::string val) {
         return;
     }
 
-    Node* target = this->GetNode(index);
+    Node<T>* target = this->GetNode(index);
     target->value_ = val;
 }
 
-Node* List::GetNode(int index) {
+template <typename T>
+Node<T>* List<T>::GetNode(int index) {
     if (index == 0) {
         return this->first_;
     }
 
-    Node* target = this->first_;
+    Node<T>* target = this->first_;
     for (int i = 0; i < index; i++) {
         target = target->next_;
     }

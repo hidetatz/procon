@@ -1,5 +1,6 @@
+template <class T>
 class Node {
 public:
-    std::string value_;
+    T value_;
     Node* next_;
 };
