@@ -17,7 +17,7 @@ func abs(i int) int {
 func main() {
 	const inf = 1 << 60
 
-	var sw = bufio.NewScanner(os.Stdin)
+	sw := bufio.NewScanner(os.Stdin)
 	sw.Split(bufio.ScanWords)
 	sw.Scan()
 

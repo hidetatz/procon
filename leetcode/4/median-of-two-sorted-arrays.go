@@ -23,11 +23,11 @@ func main() {
 		nums2 []int
 	}
 	tc := []s{
-		s{
+		{
 			nums1: []int{1, 3},
 			nums2: []int{2},
 		},
-		s{
+		{
 			nums1: []int{1, 2},
 			nums2: []int{3, 4},
 		},
