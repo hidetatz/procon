@@ -14,6 +14,10 @@ public:
     void Set(int index, T val);
     int Size();
 
+    List() {
+        first_ = nullptr;
+    }
+
 private:
     Node<T>* GetNode(int index);
 };
