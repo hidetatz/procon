@@ -1,3 +1,3 @@
 #!/bin/bash
 
-g++ -std=c++17 -Wall --pedantic-errors -o main $(fzf) && ./main
+g++ -O2 -std=c++17 -Wall --pedantic-errors -o main $(fzf) && ./main
