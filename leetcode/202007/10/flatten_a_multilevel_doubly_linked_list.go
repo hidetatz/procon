@@ -10,28 +10,24 @@ package main
  * }
  */
 
-var last *Node
-
 func flatten(root *Node) *Node {
-	helper(root)
-	return root
-}
-
-func helper(n *Node) {
-	if n != nil {
-		if last != nil {
-			n.Prev = last
-			last.Next = n
+	p := root
+	for p != nil {
+		if p.Child != nil {
+			pc := p.Child
+			for pc.Next != nil {
+				pc = pc.Next
+			}
+			pc.Next = p.Next
+			if p.Next != nil {
+				p.Next.Prev = pc
+			}
+			p.Next = p.Child
+			p.Child.Prev = p
+			p.Child = nil
 		}
-
-		last = n
-
-		newNode := n.Next
-
-		helper(n.Child)
-
-		n.Child = nil
-
-		helper(newNode)
+		p = p.Next
 	}
+
+	return root
 }
