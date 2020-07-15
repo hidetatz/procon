@@ -11,6 +11,30 @@ func twoSum(nums []int, target int) []int {
 	return nil
 }
 
+func twoSum_optimized(nums []int, target int) []int {
+	m := map[int]int{}
+
+	for i, n := range nums {
+		m[n] = i
+	}
+
+	for i, n := range nums {
+		ans := target - n
+		a, ok := m[ans]
+		if !ok {
+			continue
+		}
+
+		if a == i {
+			continue
+		}
+
+		return []int{i, a}
+	}
+
+	return []int{}
+}
+
 func main() {
 	twoSum(nil, 0)
 }
