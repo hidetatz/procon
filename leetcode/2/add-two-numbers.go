@@ -1,67 +1,39 @@
 package main
 
-import (
-	"fmt"
-)
-
-// ListNode ...
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	var res = &ListNode{}
-	var p, q, curr = l1, l2, res
-	var carry = 0
+	cur := &ListNode{}
+	ret := &ListNode{Next: cur}
 
-	for p != nil || q != nil {
-		sum := carry
-		if p != nil {
-			sum += p.Val
-			p = p.Next
+	carry := 0
+	for (l1 != nil || l2 != nil) || carry != 0 {
+		var v1, v2 int
+		if l1 != nil {
+			v1 = l1.Val
+			l1 = l1.Next
 		}
-		if q != nil {
-			sum += q.Val
-			q = q.Next
+
+		if l2 != nil {
+			v2 = l2.Val
+			l2 = l2.Next
 		}
-		fmt.Printf("sum = %+v\n", sum)
-		carry = sum / 10
-		curr.Next = &ListNode{Val: sum % 10}
-		curr = curr.Next
+
+		sum := v1 + v2 + carry
+		carry = 0
+		if sum >= 10 {
+			carry = 1
+			sum = sum - 10
+		}
+
+		cur.Next = &ListNode{Val: sum}
+		cur = cur.Next
 	}
 
-	if carry > 0 {
-		curr.Next = &ListNode{Val: carry}
-	}
-	return res.Next
-}
-
-func main() {
-	l1 := &ListNode{
-		Val: 2,
-		Next: &ListNode{
-			Val: 4,
-			Next: &ListNode{
-				Val: 3,
-			},
-		},
-	}
-	l2 := &ListNode{
-		Val: 5,
-		Next: &ListNode{
-			Val: 6,
-			Next: &ListNode{
-				Val: 4,
-			},
-		},
-	}
-	l := addTwoNumbers(l1, l2)
-	for {
-		fmt.Printf("%+v\n", l)
-		if l.Next == nil {
-			break
-		}
-		l = l.Next
-	}
+	return ret.Next.Next
 }
