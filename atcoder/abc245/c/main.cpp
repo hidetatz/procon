@@ -17,20 +17,20 @@ int main() {
 		cin >> B[i];
 	}
 
-	cout << "K: " << K << endl;
+	cerr << "K: " << K << endl;
 
-	cout << "A: ";
+	cerr << "A: ";
 	for (int i: A) {
 		cout << i << " ";
 	}
 
-	cout << "\n";
+	cerr << "\n";
 
-	cout << "B: ";
+	cerr << "B: ";
 	for (int i: B) {
 		cout << i << " ";
 	}
-	cout << "\n";
+	cerr << "\n";
 
 	for (int bit = 0; bit < (1 << N); bit++) {
 		vector<int> vec(N);
