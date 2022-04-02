@@ -1,65 +1,50 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
+
+typedef long long ll;
 
 using namespace std;
 
 int main() {
-        int n, k, x;
-        cin >> n >> k >> x;
+  ll n, k, x;
+  cin >> n >> k >> x;
 
-        vector<int> as(n);
+  vector<ll> as(n);
 
-        for (int i = 0; i < n; i++) {
-                cin >> as.at(i);
-        }
+  for (int i = 0; i < n; i++) {
+    cin >> as.at(i);
+  }
 
-        while (k != 0) {
-                sort(as.rbegin(), as.rend());
+  ll ans = 0;
+  for (int i = 0; i < n; i++) {
+    ans += as[i];
+  }
 
-                bool used = false;
-                for (int i = 0; i < n; i++) {
-                        if (k == 0) {
-                                break;
-                        }
-                        int price = as[i];
-                        if (price - x < 0) {
-                                continue;
-                        }
-                        as[i] = price - x;
-                        k--;
-                        used = true;
-                }
-                if (!used) {
-                        break;
-                }
-        }
+  ll m = 0;
+  for (int i = 0; i < n; i++) {
+    m += as[i] / x;
+    as[i] %= x;
+  }
+  if (k < m) {
+    m = k;
+  }
+  k -= m;
+  ans -= m * x;
 
-        while (k != 0) {
-                sort(as.rbegin(), as.rend());
+  if (k <= 0) {
+    cout << ans << endl;
+    return 0;
+  }
 
-                bool used = false;
-                for (int i = 0; i < n; i++) {
-                        if (k == 0) {
-                                break;
-                        }
-                        int price = as[i];
-                        as[i] = price - x;
-                        k--;
-                        used = true;
-                }
-                if (!used) {
-                        break;
-                }
-        }
+  sort(as.rbegin(), as.rend());
+  for (int i = 0; i < n; i++) {
+    if (k == 0) {
+      break;
+    }
+    ans -= as[i];
+    k--;
+  }
 
-        int result = 0;
-        for (int i = 0; i < n; i++) {
-       		if (as[i] < 0) {
-			continue;
-                }
-                result += as[i];
-        }
-
-        cout << result << endl;
+  cout << ans << endl;
 }
